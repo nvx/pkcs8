@@ -36,9 +36,7 @@ type ScryptOpts struct {
 	ParallelizationParameter int
 }
 
-func (p ScryptOpts) DeriveKey(password, salt []byte, size int) (
-	key []byte, params KDFParameters, err error) {
-
+func (p ScryptOpts) DeriveKey(password, salt []byte, size int) (key []byte, params KDFParameters, err error) {
 	key, err = scrypt.Key(password, salt, p.CostParameter, p.BlockSize,
 		p.ParallelizationParameter, size)
 	if err != nil {

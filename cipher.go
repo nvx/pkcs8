@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/cipher"
 	"encoding/asn1"
+	"errors"
 )
 
 type cipherWithBlock struct {
@@ -30,7 +31,7 @@ func (c cipherWithBlock) Encrypt(key, iv, plaintext []byte) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	return cbcEncrypt(block, key, iv, plaintext)
+	return cbcEncrypt(block, iv, plaintext)
 }
 
 func (c cipherWithBlock) Decrypt(key, iv, ciphertext []byte) ([]byte, error) {
@@ -38,10 +39,10 @@ func (c cipherWithBlock) Decrypt(key, iv, ciphertext []byte) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	return cbcDecrypt(block, key, iv, ciphertext)
+	return cbcDecrypt(block, iv, ciphertext)
 }
 
-func cbcEncrypt(block cipher.Block, key, iv, plaintext []byte) ([]byte, error) {
+func cbcEncrypt(block cipher.Block, iv, plaintext []byte) ([]byte, error) {
 	mode := cipher.NewCBCEncrypter(block, iv)
 	paddingLen := block.BlockSize() - (len(plaintext) % block.BlockSize())
 	ciphertext := make([]byte, len(plaintext)+paddingLen)
@@ -51,10 +52,27 @@ func cbcEncrypt(block cipher.Block, key, iv, plaintext []byte) ([]byte, error) {
 	return ciphertext, nil
 }
 
-func cbcDecrypt(block cipher.Block, key, iv, ciphertext []byte) ([]byte, error) {
+func cbcDecrypt(block cipher.Block, iv, ciphertext []byte) ([]byte, error) {
 	mode := cipher.NewCBCDecrypter(block, iv)
 	plaintext := make([]byte, len(ciphertext))
 	mode.CryptBlocks(plaintext, ciphertext)
-	// TODO: remove padding
+
+	// Remove padding
+	psLen := int(plaintext[len(plaintext)-1])
+	if psLen == 0 || psLen > block.BlockSize() {
+		return nil, errors.New("pkcs8: decryption failed")
+	}
+
+	if len(plaintext) < psLen {
+		return nil, errors.New("pkcs8: decryption failed")
+	}
+
+	ps := plaintext[len(plaintext)-psLen:]
+	plaintext = plaintext[:len(plaintext)-psLen]
+
+	if !bytes.Equal(ps, bytes.Repeat([]byte{byte(psLen)}, psLen)) {
+		return nil, errors.New("pkcs8: decryption failed")
+	}
+
 	return plaintext, nil
 }

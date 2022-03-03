@@ -81,9 +81,8 @@ type Opts struct {
 	KDFOpts KDFOpts
 }
 
-// Unecrypted PKCS8
 var (
-	oidPBES2 = asn1.ObjectIdentifier{1, 2, 840, 113549, 1, 5, 13}
+	oidPBES2 = asn1.ObjectIdentifier([]int{1, 2, 840, 113549, 1, 5, 13})
 )
 
 type encryptedPrivateKeyInfo struct {
@@ -96,10 +95,15 @@ type pbes2Params struct {
 	EncryptionScheme  pkix.AlgorithmIdentifier
 }
 
-type privateKeyInfo struct {
-	Version             int
-	PrivateKeyAlgorithm pkix.AlgorithmIdentifier
-	PrivateKey          []byte
+func unmarshal(in []byte, out interface{}) error {
+	trailing, err := asn1.Unmarshal(in, out)
+	if err != nil {
+		return err
+	}
+	if len(trailing) != 0 {
+		return errors.New("pkcs8: trailing data found")
+	}
+	return nil
 }
 
 func parseKeyDerivationFunc(keyDerivationFunc pkix.AlgorithmIdentifier) (KDFParameters, error) {
@@ -109,7 +113,7 @@ func parseKeyDerivationFunc(keyDerivationFunc pkix.AlgorithmIdentifier) (KDFPara
 		return nil, fmt.Errorf("pkcs8: unsupported KDF (OID: %s)", oid)
 	}
 	params := newParams()
-	_, err := asn1.Unmarshal(keyDerivationFunc.Parameters.FullBytes, params)
+	err := unmarshal(keyDerivationFunc.Parameters.FullBytes, params)
 	if err != nil {
 		return nil, errors.New("pkcs8: invalid KDF parameters")
 	}
@@ -124,7 +128,7 @@ func parseEncryptionScheme(encryptionScheme pkix.AlgorithmIdentifier) (Cipher, [
 	}
 	cipher := newCipher()
 	var iv []byte
-	if _, err := asn1.Unmarshal(encryptionScheme.Parameters.FullBytes, &iv); err != nil {
+	if err := unmarshal(encryptionScheme.Parameters.FullBytes, &iv); err != nil {
 		return nil, nil, errors.New("pkcs8: invalid cipher parameters")
 	}
 	return cipher, iv, nil
@@ -142,37 +146,18 @@ func ParsePrivateKey(der []byte, password []byte) (interface{}, KDFParameters, e
 
 	// Use the password provided to decrypt the private key
 	var privKey encryptedPrivateKeyInfo
-	if _, err := asn1.Unmarshal(der, &privKey); err != nil {
+	if err := unmarshal(der, &privKey); err != nil {
 		return nil, nil, errors.New("pkcs8: only PKCS #5 v2.0 supported")
 	}
 
-	if !privKey.EncryptionAlgorithm.Algorithm.Equal(oidPBES2) {
-		return nil, nil, errors.New("pkcs8: only PBES2 supported")
+	var decryptedKey []byte
+	var kdfParams KDFParameters
+	var err error
+	if privKey.EncryptionAlgorithm.Algorithm.Equal(oidPBES2) {
+		decryptedKey, kdfParams, err = decryptPBES2(privKey, password)
+	} else {
+		decryptedKey, kdfParams, err = decryptPBE(privKey, password)
 	}
-
-	var params pbes2Params
-	if _, err := asn1.Unmarshal(privKey.EncryptionAlgorithm.Parameters.FullBytes, &params); err != nil {
-		return nil, nil, errors.New("pkcs8: invalid PBES2 parameters")
-	}
-
-	cipher, iv, err := parseEncryptionScheme(params.EncryptionScheme)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	kdfParams, err := parseKeyDerivationFunc(params.KeyDerivationFunc)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	keySize := cipher.KeySize()
-	symkey, err := kdfParams.DeriveKey(password, keySize)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	encryptedKey := privKey.EncryptedData
-	decryptedKey, err := cipher.Decrypt(symkey, iv, encryptedKey)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -182,6 +167,38 @@ func ParsePrivateKey(der []byte, password []byte) (interface{}, KDFParameters, e
 		return nil, nil, errors.New("pkcs8: incorrect password")
 	}
 	return key, kdfParams, nil
+}
+
+func decryptPBES2(privKey encryptedPrivateKeyInfo, password []byte) ([]byte, KDFParameters, error) {
+	var params pbes2Params
+	err := unmarshal(privKey.EncryptionAlgorithm.Parameters.FullBytes, &params)
+	if err != nil {
+		return nil, nil, errors.New("pkcs8: invalid PBES2 parameters")
+	}
+
+	cipherType, iv, err := parseEncryptionScheme(params.EncryptionScheme)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	kdfParams, err := parseKeyDerivationFunc(params.KeyDerivationFunc)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	keySize := cipherType.KeySize()
+	symKey, err := kdfParams.DeriveKey(password, keySize)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	encryptedKey := privKey.EncryptedData
+	decryptedKey, err := cipherType.Decrypt(symKey, iv, encryptedKey)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return decryptedKey, kdfParams, nil
 }
 
 // MarshalPrivateKey encodes a private key into DER-encoded PKCS#8 with the given options.

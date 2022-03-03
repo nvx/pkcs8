@@ -138,6 +138,68 @@ RNXdI4NIGtOdg8zwuKI5AefoLlWjt56Pzg==
 -----END ENCRYPTED PRIVATE KEY-----
 `
 
+const encryptedRSA2048pbeSha3Des = `-----BEGIN ENCRYPTED PRIVATE KEY-----
+MIIE6jAcBgoqhkiG9w0BDAEDMA4ECH5gHmdJa18CAgIIAASCBMiy74Yy5keszalY
+FsTV3XE7LajhZs+qfK6TS7Sbtw+602mLORLkkZVS+U7ImjC7FD2BAMJ9aG3zrs16
+zW7hjCljGzO07Rh/8THI0dSTuTN3O/thqSs2L+ggGAmx4dtwd61CI+h0g2NQoIPK
+bPuARaMWNL8Sxn6uzL31lP/I34ihl/IM9Uy/mFp0btrqAQJdhA251W2qO/VFktjj
+GgNy0MvuefdPYImpcSaHeoPouDo+u9pW7EcRMY4xe2wFa3R+xoNl/5NzQbKEYAgp
+rZx3VwygsNBuD5sGQ2XELgCaz05YQV+Eb4T6+fdyZDzGl4A5QChv3oRCWnyesT3q
+ufMZM5SmaubxajBaASlOcLLMZc1uJIzEYStIlmdGBGyXq0Ekk6saOYrjnhep4p+f
+5sYMQ54RhwCS8quP1EI9oTUopl3RNbHCE8E7NHGvPQBFdktj3GgEgiJN6APaXXbO
+Hp0KfeD9J9eHFHd14N8H96ZN20pL463sy+FIhXXSuZ7/GqMO8asBGLXrhU/CJ5fp
+2s/HNA/iwsk+TZE6LGf30KBfGsB5ChcmTrrbleil69B1X/CoLZy3oamay7fh2fcv
+AwULsirCWe97Mop27fjjG+j9906O/jbFjbEVhMLYmZ73fL1tLq5dgkU1SW5C6ikM
+HUgBM5hT5L7Vc+V9fcCKVEmC/hyDCYiFZWnArJSxZumyfN0xWcXQj93NkBuXDFL7
+H6BpMqr0LwRvl3uOLMu49/xzXSx3g067GL0KVTuz8/Pfx2x6PeAObuRWsVo9mGW+
+StkUYhfba2+l9f24U503kpHd8IaVBEGYG9rOVzcNETsceUgS6xnyrT5m/YroZWkm
+CheZsdWxpvTngagdyndABuekGvkA7/PiLsyUdeUpgojgbpoL2kRFLkh/xT0UaTIA
+h3OyBqLtw0kak2l8x4u5+KIMex/tPk3T3JgTknrL4KFnHpzNuy03hqdCY0ECNHXP
+8j9AbwXkvYWffmFYu7qrMWN2fm/bhqBe19+1wflMiMs69hlBVdYBbDjK1bDDQCs2
+hmM2rud6oMY7aI61165qvJxTCNGttLaW0VAGO1ZPlgoqiuGtFEIsohpM+DRzjWg6
+PZidbAAwDTzl222a/Bmq4yWmR1PxZTecjs/mjnWH+TsVOJX/tBZ5L3WbpcNEUWH5
+6hg3+/wYdOZYRYh4QBvG0tk/ABar9Q5cUwnNpFgfrZu3xs4wfJUXR4xVVk8Oycin
+3WokdAXBO5i2xBs5EUh9uKL5GZPBTOQI6u6br6maZC1DRaRv58pKp5729msig7qP
+QyUxtxEtg6I86q7UkwD8uanxv0Q+04GIF+BSsj2oDRneKixWiTBvCZKMV6KYWp2p
+SgdALK9CuBixDAFT1ItAgoBTjbfPh6fAHbBEj5JGLgfs08WQGGng7dXwn8JgpuXL
+T8tDayW44xXlLXNs8qoDFAdfC5XRw2EhBEovndbW+0yNtgCVBg4s5ezTBYrBm1Wq
+Pj3XnhNtJMKEMN5rwP2QkCy0olBcJg79V7WYR6nXunkY0SrzToJd/uCSvOedRapE
+EU+Ahg+Y7JvKfsZ273wkVaKHmxAbPcUdYR8dxo6yQyPh6voAlLXGTK4ODCLupGJb
+u7NHigvstDCuwuwfwyg=
+-----END ENCRYPTED PRIVATE KEY-----
+`
+
+const encryptedRSA2048pbeMd5Des = `-----BEGIN ENCRYPTED PRIVATE KEY-----
+MIIE6TAbBgkqhkiG9w0BBQMwDgQIQPjEZXcFaqoCAggABIIEyEmYccMBg2q+7VYn
+Bu3oRqkgKCmvzKl4sHVtEPqyDRq8uSo6va0u5qRVn1AG2vGYCdwnFUGChF26jUaB
+RIKBLMnOKlaCm1CQaXjWMWTvHY85vUe/NFNgMn/V6bl1PkyvQ6OeIEQ1Y8eUiN90
+fO4nSSdNFlLSvBsZdjz4kh7GPNJk6QG27fr3tvta9XG3ikLf5HWvrxNAgzIYHMxh
+xamwcOucxqasEwj++KvFqzfLBP93CXCAgTDHN0tAg/hxgVOzXMepWcmzM1zMxp3I
+OuqHaxXY1Rg8A/iP2tDHpDxOSI57qkYmX7D+RfxMWKSWo3ZfwbK9xR1hcgg1s43d
+gHkzBSUkDicVdqNBP9Bc9lbdu72s8IvCI0mS8BxnVml7kSFpWSO/owmcK7E9FY4T
+VAXb7trHQZtA2i6eieTPXeidaUZZFgZZv5mVDScxxQYzjC6e+Vfu8dIkgYCZjpqE
+EEPHJ/WktLZR1RckRzvGqafsCRT0Sp68nWaTj/Rp8mx8ZmmuZ5u4L4WtzBUZWWX2
+Hhpox42EZ9GBsLGMpv+32AmU04pL3V0QCfFiFm6muUt2iEu6QIzyWj3iVqGBIHNy
+ngNpJThh6WLpAWSSbmqRIrktp7WQpqPuDiPcDjPo81kkpLOuHL6r1Ifrs+95zLGJ
+giB/7UpbZDQkytAFQmucexKHeo2fwMbxsaAg5hQpJ4MFYFTLAYlrH2oppw3qAqLb
+WUzNdOLyU0Aek3gFvYSTmFLzWyTg8tNWwNapPvlMfNrYm9NNpmhB098i+boK5an0
+CBbupZzlPlsAV3iQdZxrYCB0umy/wpNVAgQNaX3qFWaI4Fl6ZA47YM50Ehl6/v+K
+J7hpM3gIBMBMCm08LcaGF0IOOtB8H11g7hUCm8l7MJGrbrPZ3+ewXd20llzIIP5U
+QxPsqZq/bmCcDwi1SJDbpCU47sJxDBfCzMlECsTFCyL0uv5m8hGQQ1QKSUV0TGpu
+7p/WCdBZAHHXfZHisHT5RfQQhe6ECJLfVxvEPhSGYeKwM1YEeDUMG8razwQgs3dc
+xVsmIpX3knnzM89xvPLrYSCkn63VajIpaxQrtj2yKbPC+yKYvFgEmKLRPhxrg0jw
+YSJW18DUCFGE8O2ZnQEKdVa60B0xiSR5cnZCFBZZNO7qobN3G/TdNv1BFWezF9gT
+iPxwIbZDRkHK6LO5rRxrTieOtSpr0I3zJDUg6D4C1E+kaY5mlcRnLnW4fUeN8Wjc
+r7gpJrAKuU/9OZgErB7/lmAl96kAW3frKyAOdE8T6cp5TCPRdqxsY+DWxSjU4/iH
+ZFSCXxRzzstKnDDRk1NvcfiLwE0BOmhgmCnvn2uRmXi/sWP5lHKxqj4b5xE3NYFw
+sS/1Uwz4YjvfE/jMdjxImpBkH376iOHQqyZyQ7OuKy5IMk2YHQNUKfzM37ejBYpO
+pumHmkG/1tYKAvLI/WDaQLAtmWTVIJBnJKUGlfY0j9SuGxgjZwUOfuepLcCtfyD1
+Q+J2KQSVw47DTAYiLVrYEZhgKVAVSNmQlBU4M/MCe2f4FdmxBVFdENgRCwed+7gI
+vc8yo8Vha6id0d0bM/5WTjcz3IDhkSdp+uaD0QwCKMDRJXnW4K3RjzcCDdJI89Gq
+twrS8jv8K//nip1bkw==
+-----END ENCRYPTED PRIVATE KEY-----
+`
+
 const ec256 = `-----BEGIN PRIVATE KEY-----
 MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgjLFzKb/8hsdSmPft
 s98RZ7AWzQnLDsMhy6v+/3BZlZ6hRANCAASKkodoH+hHmBfwoFfrvv1E+iMLt3g1
@@ -203,8 +265,20 @@ func TestParsePKCS8PrivateKeyRSA(t *testing.T) {
 			clear:     rsa2048,
 			encrypted: encryptedRSA2048des3,
 		},
+		{
+			name:      "encryptedRSA512PbeWithMD5AndDESCBC",
+			clear:     rsa2048,
+			encrypted: encryptedRSA2048pbeMd5Des,
+		},
+		{
+			name:      "encryptedRSA2048pbeSha3Des",
+			clear:     rsa2048,
+			encrypted: encryptedRSA2048pbeSha3Des,
+		},
 	}
 	for i, key := range keyList {
+		i := i
+		key := key
 		t.Run(key.name, func(t *testing.T) {
 			block, _ := pem.Decode([]byte(key.encrypted))
 			_, err := pkcs8.ParsePKCS8PrivateKeyRSA(block.Bytes, []byte("password"))
@@ -242,6 +316,8 @@ func TestParsePKCS8PrivateKeyECDSA(t *testing.T) {
 		},
 	}
 	for i, key := range keyList {
+		i := i
+		key := key
 		t.Run(key.name, func(t *testing.T) {
 			block, _ := pem.Decode([]byte(key.encrypted))
 			_, err := pkcs8.ParsePKCS8PrivateKeyECDSA(block.Bytes, []byte("password"))
@@ -317,6 +393,8 @@ func TestParsePKCS8PrivateKey(t *testing.T) {
 		},
 	}
 	for i, key := range keyList {
+		i := i
+		key := key
 		t.Run(key.name, func(t *testing.T) {
 			block, _ := pem.Decode([]byte(key.encrypted))
 			_, err := pkcs8.ParsePKCS8PrivateKey(block.Bytes, []byte(key.password))

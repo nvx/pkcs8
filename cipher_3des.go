@@ -1,7 +1,7 @@
 package pkcs8
 
 import (
-	"crypto/des"
+	"crypto/des" //nolint:gosec // compatibility
 	"encoding/asn1"
 )
 

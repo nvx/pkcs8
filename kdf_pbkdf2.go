@@ -2,7 +2,7 @@ package pkcs8
 
 import (
 	"crypto"
-	"crypto/sha1"
+	"crypto/sha1" //nolint:gosec // compatibility
 	"crypto/sha256"
 	"crypto/x509/pkix"
 	"encoding/asn1"
@@ -13,9 +13,9 @@ import (
 )
 
 var (
-	oidPKCS5PBKDF2        = asn1.ObjectIdentifier{1, 2, 840, 113549, 1, 5, 12}
-	oidHMACWithSHA1       = asn1.ObjectIdentifier{1, 2, 840, 113549, 2, 7}
-	oidHMACWithSHA256     = asn1.ObjectIdentifier{1, 2, 840, 113549, 2, 9}
+	oidPKCS5PBKDF2    = asn1.ObjectIdentifier{1, 2, 840, 113549, 1, 5, 12}
+	oidHMACWithSHA1   = asn1.ObjectIdentifier{1, 2, 840, 113549, 2, 7}
+	oidHMACWithSHA256 = asn1.ObjectIdentifier{1, 2, 840, 113549, 2, 9}
 )
 
 func init() {
@@ -70,9 +70,7 @@ type PBKDF2Opts struct {
 	HMACHash       crypto.Hash
 }
 
-func (p PBKDF2Opts) DeriveKey(password, salt []byte, size int) (
-	key []byte, params KDFParameters, err error) {
-
+func (p PBKDF2Opts) DeriveKey(password, salt []byte, size int) (key []byte, params KDFParameters, err error) {
 	key = pbkdf2.Key(password, salt, p.IterationCount, size, p.HMACHash.New)
 	prfParam, err := newPRFParamFromHash(p.HMACHash)
 	if err != nil {
