@@ -1,4 +1,4 @@
-module github.com/youmark/pkcs8
+module github.com/nvx/pkcs8
 
 go 1.12
 

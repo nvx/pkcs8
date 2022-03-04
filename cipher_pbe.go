@@ -5,8 +5,8 @@ import (
 	"crypto/des" //nolint:gosec // compatibility
 	"encoding/asn1"
 	"errors"
-	"github.com/youmark/pkcs8/internal/pkcspbkdf"
-	"github.com/youmark/pkcs8/internal/rc2"
+	"github.com/nvx/pkcs8/internal/pkcspbkdf"
+	"github.com/nvx/pkcs8/internal/rc2"
 )
 
 var (
